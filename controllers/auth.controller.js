@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const Usuario = require('../models/Usuario');
 const { generateJWT } = require('../helpers/jwt');
 
-const login = async (req = request, res = response) => {
+module.exports.login = async (req = request, res = response) => {
   const { email, password } = req.body;
 
   try {
@@ -44,7 +44,7 @@ const login = async (req = request, res = response) => {
   }
 };
 
-const register = async (req = request, res = response) => {
+module.exports.register = async (req = request, res = response) => {
   const { email, password } = req.body;
 
   try {
@@ -80,7 +80,7 @@ const register = async (req = request, res = response) => {
   }
 };
 
-const updateToken = async (req = request, res = response) => {
+module.exports.updateToken = async (req = request, res = response) => {
   const { uid, name } = req;
 
   // Generate JWT
@@ -90,10 +90,4 @@ const updateToken = async (req = request, res = response) => {
     ok: true,
     token,
   });
-};
-
-module.exports = {
-  login,
-  register,
-  updateToken,
 };

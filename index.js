@@ -19,9 +19,11 @@ app.use(express.json());
 app.use(cors());
 
 // Rutas
-app.use('/api/auth', require('./routes/auth.route'));
+app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/api/event', require('./routes/events.routes'));
 
 // Escuchar peticiones
 app.listen(process.env.PORT, () => {
+  // eslint-disable-next-line no-console
   console.log('Servidor escuchando en el puerto 4000');
 });
