@@ -7,6 +7,8 @@ require('dotenv').config();
 // Crear el servidor
 const app = express();
 
+const PORT = process.env.PORT || 4000;
+
 // DB connect
 dbConnection();
 
@@ -30,7 +32,7 @@ app.get('*', (req, res) => {
 });
 
 // Escuchar peticiones
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log('Servidor escuchando en el puerto 4000');
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
