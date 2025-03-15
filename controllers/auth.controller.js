@@ -49,7 +49,6 @@ module.exports.register = async (req = request, res = response) => {
 
   try {
     let usuario = await Usuario.findOne({ email });
-    // console.log(usuario);
     if (usuario) {
       return res.status(400).json({
         ok: false,
@@ -69,12 +68,14 @@ module.exports.register = async (req = request, res = response) => {
     // Generate JWT
     const token = await generateJWT(usuario.id, usuario.name);
 
-    return res.status(201).json({
+    const resultRegister = {
       ok: true,
       uid: usuario.id,
       name: usuario.name,
       token,
-    });
+    };
+
+    return res.status(201).json(resultRegister);
   } catch (error) {
     return res.status(500).json({ ok: false, msg: 'Hable con el servidor' });
   }
